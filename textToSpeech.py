@@ -1,8 +1,5 @@
 import pyttsx3
 
-red =open('textf.txt','r+') 
-a = red.read()
-
 def my_speech(my_message):
     engine = pyttsx3.init()
     rate = engine.getProperty('rate')
@@ -11,5 +8,3 @@ def my_speech(my_message):
     engine.runAndWait()
     #rate = engine.getProperty('rate')
 
-
-my_speech(a)

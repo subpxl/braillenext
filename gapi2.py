@@ -5,11 +5,11 @@ import io
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="apikey.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:/apikey/apikey.json"
 
 
 #%%
-image_file='example.g'
+image_file='a.jpeg'
 image  = Image.open(image_file)
 
 client = vision.ImageAnnotatorClient()
@@ -114,7 +114,7 @@ def text_within(document,x1,y1,x2,y2):
                                 text+='\n'
     return text
 
-print(text_within(document, 50,0,8331,4000))
-    
 
-#%%
+def output():
+    op = text_within(document, 50,0,8331,4000)
+    return op
