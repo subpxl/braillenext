@@ -1,7 +1,7 @@
 from textToSpeech import my_speech
 from gapi2 import output
-from capture import
-
+from capture import capture
+from faceDetect import face_main
 
 
 def read():
@@ -11,6 +11,7 @@ def read():
 	my_speech("the content is ")
 	# make last part female voice
 	my_speech(imgtxt) # from textTOSpeech
+	
 
 def objectDetect():
 	# should i use tensorflow for this ??????
@@ -21,10 +22,22 @@ def objectDetect():
 	# make last part female voice
 	my_speech(imgtxt) # from textTOSpeech
 
+def face():
+# should i use tensorflow for this ??????
+	my_speech("detecting please wait")
+	faceData = face_main("faces.jpg","annote.jpg")
+  # from gapi
+	print(faceData)  # to test
+	my_speech("the result is ")
+	# make last part female voice
+	my_speech(faceData) # from textTOSpeech
+
+
+
 def control():
 # paste all button conditions here
 #needed to include ir remote also to the file
-if 
+	pass
 
 if __name__ =="__main__":
-	control()
+	face()

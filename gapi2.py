@@ -5,11 +5,12 @@ import io
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:/apikey/apikey.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/apikey.json"
+
 
 
 #%%
-image_file='a.jpeg'
+image_file='b.jpeg'
 image  = Image.open(image_file)
 
 client = vision.ImageAnnotatorClient()
