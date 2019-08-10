@@ -7,10 +7,15 @@ from enum import Enum
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/apikey.json"
 
+import picamera
+import time
+from capture import captureDocs
 
 
 #%%
-image_file='b.jpeg'
+#image_file="/home/pi/cashma/images/cc.jpeg"
+image_file=captureDocs()
+
 image  = Image.open(image_file)
 
 client = vision.ImageAnnotatorClient()
@@ -118,4 +123,11 @@ def text_within(document,x1,y1,x2,y2):
 
 def output():
     op = text_within(document, 50,0,8331,4000)
-    return op
+    if len(op)>=1:
+    
+        return op
+    else:
+        return "no text found"
+
+if __name__=="__main__":
+    print(output())

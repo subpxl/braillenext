@@ -4,28 +4,21 @@ import io
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
+from capture import captureFace
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/apikey.json"
 
+face_filex = captureFace()
 
 
+print(face_filex,type(face_filex))
+
+#%%
 def detect_face(face_file, max_results=100):
-    """Uses the Vision API to detect faces in the given file.
-
-    Args:
-        face_file: A file-like object containing an image with faces.
-
-    Returns:
-        An array of Face objects with information about the picture.
-    """
     client = vision.ImageAnnotatorClient()
 
     content = face_file.read()
     image = types.Image(content=content)
-
     return client.face_detection(image=image, max_results=max_results).face_annotations
-
-    
-
     
 def highlight_faces(image, faces, output_filename):
     """Draws a polygon around the faces, then saves to output_filename.
@@ -62,7 +55,17 @@ def  face_main(input_filename, output_filename, max_result=10):
         # Reset the file pointer, so we can read the file again
         image.seek(0)
         highlight_faces(image, faces, output_filename)
-        return 'Found {} face{}'.format(len(faces), '' if len(faces) == 1 else 's')
+
+        if len(faces) >0:
+            return 'Found {}  faces'.format(len(faces))
+
+        else:
+            return " no face found"
 
 
-#print(face_main("faces.jpg","annote.jpg"))
+def faceOutput():
+    op =  face_main(face_filex,"annote.jpg")
+    return op
+    
+if __name__ == "__main__":
+    print(faceOutput())

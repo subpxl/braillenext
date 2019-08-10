@@ -6,6 +6,13 @@ from enum import Enum
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/apikey.json"
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> night 10 august
 def localize_objects(path):
     from google.cloud import vision
     client = vision.ImageAnnotatorClient()
