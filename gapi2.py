@@ -128,6 +128,3 @@ def output():
         return op
     else:
         return "no text found"
-
-if __name__=="__main__":
-    print(output())

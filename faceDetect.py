@@ -66,6 +66,4 @@ def  face_main(input_filename, output_filename, max_result=10):
 def faceOutput():
     op =  face_main(face_filex,"annote.jpg")
     return op
-    
-if __name__ == "__main__":
-    print(faceOutput())
+   
