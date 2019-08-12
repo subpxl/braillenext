@@ -9,10 +9,7 @@ def mySpeechMale(text):
 
 
 
-=======
-def mySpeechFemale(text):
-    call(["espeak","-s160 ","-ven+f1",text])
-
+mySpeechFemale(a)
 
 
 if __name__=="__main__":
