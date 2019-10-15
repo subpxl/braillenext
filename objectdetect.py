@@ -7,7 +7,8 @@ import os
 from capture import captureObject
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/apikey.json"
 
-object_file = captureObject()
+object_file = captureObject
+
 def localize_objects(path):
     from google.cloud import vision
     client = vision.ImageAnnotatorClient()

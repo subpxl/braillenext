@@ -6,11 +6,34 @@ import io
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
-
 import picamera
 import time
-from capture import captureDocs
+from guizero import App, Text, TextBox, PushButton, Slider, Picture
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
+camera = picamera.PiCamera()
+
+imagestr = "images/image"+str(time.time())+".jpg"
+
+def captureDocs():
+    camera.capture(imagestr)
+    return(imagestr)
+
+from subprocess import call
+import time
+a = "hello dear"
+
+def mySpeechMale(text):
+    call(["espeak","-s140 -ven+18 -z",text])
+    return None
+
+def readBook():
+    mySpeechMale(output())
+
+
+
+app = App(title="Hello world")
+
 
 
 #%%
@@ -130,4 +153,10 @@ def output():
     else:
         return "no text found"
 
-print(output())
+
+welcome_message = Text(app, text="  CASHMA", size=40, font="Times new roman", color="lightblue")
+my_name = TextBox(app, width=30)
+update_text = PushButton(app, command=readBook, text="READ")
+
+
+app.display()

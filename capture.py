@@ -20,4 +20,3 @@ def captureObject():
     return(image)
 
 
-print(captureDocs())
