@@ -3,21 +3,21 @@ import time
 
 camera = picamera.PiCamera()
 
-face = "images/face/face"+str(time.time())+".jpg"
-
-docs = "images/text/docs"+str(time.time())+".jpg"
-
-objs = "images/object/obj"+str(time.time())+".jpg"
+image = "images/image"+str(time.time())+".jpg"
 
 def captureFace():
-    camera.capture(face)
-    return(face)
+    camera.capture(image)
+    return(image)
 
 def captureDocs():
-    camera.capture(docs)
-    return(docs)
+    camera.capture(image)
+    return(image)
+
 
 
 def captureObject():
-    camera.capture(objs)
-    return(objs)
+    camera.capture(image)
+    return(image)
+
+
+print(captureDocs())

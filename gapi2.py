@@ -1,3 +1,4 @@
+
 #%%
 from google.cloud import vision
 from google.cloud.vision import types
@@ -5,7 +6,7 @@ import io
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/apikey.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
 
 import picamera
 import time
@@ -128,3 +129,5 @@ def output():
         return op
     else:
         return "no text found"
+
+print(output())
