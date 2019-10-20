@@ -1,9 +1,6 @@
-import picamera
-import time
 
 camera = picamera.PiCamera()
 
-image = "images/image"+str(time.time())+".jpg"
 
 def captureFace():
     camera.capture(image)

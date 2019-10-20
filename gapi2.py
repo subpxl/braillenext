@@ -14,9 +14,12 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
 camera = picamera.PiCamera()
 
 imagestr = "images/image"+str(time.time())+".jpg"
-
+  r
 def captureDocs():
-    camera.capture(imagestr)
+    camera.capt
+    
+    
+    ure(imagestr)
     return(imagestr)
 
 from subprocess import call
