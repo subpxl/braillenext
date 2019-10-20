@@ -11,12 +11,7 @@ from guizero import App, Text, TextBox, PushButton, Slider, Picture
 
 
 
-
-
-
-
-
-
+image = "images/image"+str(time.time())+".jpg"
 
 class ObjectDetect():
 
@@ -52,17 +47,7 @@ class ObjectDetect():
 
 
 camera = picamera.PiCamera()
-
-
-    i = 0
-    while os.path.exists("image%s.jpg" % i):
-        i += 1
-
-
-    fh = open("sample%s.txt" % i, "w")
-    camera.capture("sample%s.txt" % i)
-    print(i)
-
+camera.capture(image)
 
 
 
