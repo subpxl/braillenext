@@ -42,9 +42,10 @@ class ObjectDetect():
         else:
             return "no object found"
 
+if __name__ == "__main__":
 
-#inst = ObjectDetect()
+    inst = ObjectDetect()
 
-#result= inst.localize_objects(image)
+    result= inst.localize_objects(image)
 
-#print(result)
+    print(result)
