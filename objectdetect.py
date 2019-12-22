@@ -4,19 +4,19 @@ import io
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/apikey.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
 import picamera
 import time
-from guizero import App, Text, TextBox, PushButton, Slider, Picture
 
 
 
-image = "images/image"+str(time.time())+".jpg"
+image = "images/testimages/truck.png"
 
 class ObjectDetect():
 
+
     def localize_objects(self,path):
-        from google.cloud import vision
+#        from google.cloud import vision
         client = vision.ImageAnnotatorClient()
 
         with open(path, 'rb') as image_file:
@@ -41,19 +41,10 @@ class ObjectDetect():
 
         else:
             return "no object found"
-    def objectOutput(self):
-        return localize_objects(object_file)
 
 
+#inst = ObjectDetect()
 
-camera = picamera.PiCamera()
-camera.capture(image)
+#result= inst.localize_objects(image)
 
-
-
-
-app = App(title="Hello world")
-welcome_message = Text(app, text="  CASHMA", size=40, font="Times new roman", color="lightblue")
-my_name = TextBox(app, width=30)
-update_text = PushButton(app, command=readBook, text="READ")
-app.display()
+#print(result)

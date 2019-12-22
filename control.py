@@ -2,7 +2,6 @@ from textToSpeech import mySpeechMale
 from gapi2 import output
 from faceDetect import faceOutput
 from objectdetect import objectOutput
-from guizero import App, Text, TextBox, PushButton, Slider, Picture
 
 
 
@@ -35,10 +34,5 @@ def face():
 	# make last part female voice
 	mySpeechMale(faceData) # from textTOSpeech
 
-app = App(title="Hello world")
-welcome_message = Text(app, text="  CASHMA", size=40, font="Times new roman", color="lightblue")
-my_name = TextBox(app, width=30)
-update_text = PushButton(app, command=read, text="READ")
 
 
-app.display()
