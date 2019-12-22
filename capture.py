@@ -1,23 +1,19 @@
 import picamera
 import time
-
+import os
 camera = picamera.PiCamera()
 
-image = "images/image"+str(time.time())+".jpg"
-
-def captureFace():
-    camera.capture(image)
-    return(image)
-
-def captureDocs():
-    camera.capture(image)
-    return(image)
 
 
+print(os.getcwd())
+#camera.capture("images/sample.jpg" )
+i = 0
 
-def captureObject():
-    camera.capture(image)
-    return(image)
+while os.path.exists("sample%s.jpg" % i):
+    i += 1
+    imaged = "sample{}.jpg".format(i)
+    camera.capture(imaged)
+    print(i)
 
 
-print(captureDocs())
+

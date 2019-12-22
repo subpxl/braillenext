@@ -1,7 +1,10 @@
-from textToSpeech import mySpeechFemale,mySpeechMale
+from textToSpeech import mySpeechMale
 from gapi2 import output
 from faceDetect import faceOutput
 from objectdetect import objectOutput
+
+
+
 
 def read():
 	mySpeechMale("processing please wait")

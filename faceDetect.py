@@ -7,7 +7,7 @@ import os
 from capture import captureFace
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/apikey.json"
 
-face_filex = captureFace()
+face_filex = captureFace
 
 
 print(face_filex,type(face_filex))
