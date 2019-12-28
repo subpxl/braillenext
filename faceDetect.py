@@ -1,13 +1,17 @@
 from google.cloud import vision
 from google.cloud.vision import types
 import io
+
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
-
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
+from capture import capture
 
-image = "images/testimages/face.jpg"
+#image = "images/testimages/face.jpg"
+image = capture()
+print(image)
+
 annotate_path = "/home/pi/cashma/images/testimages/annotate/annotate.jpg"
 
     

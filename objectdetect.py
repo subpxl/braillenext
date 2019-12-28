@@ -5,12 +5,12 @@ from PIL import Image, ImageDraw
 from enum import Enum
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
-import picamera
+from capture import capture
 import time
 
 
 
-image = "images/testimages/truck.png"
+image = capture()
 
 class ObjectDetect():
 
@@ -49,3 +49,4 @@ if __name__ == "__main__":
     result= inst.localize_objects(image)
 
     print(result)
+

@@ -6,42 +6,15 @@ import io
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
-import picamera
 import time
-from guizero import App, Text, TextBox, PushButton, Slider, Picture
+from capture import capture
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
-camera = picamera.PiCamera()
-
-imagestr = "images/image"+str(time.time())+".jpg"
-  r
-def captureDocs():
-    camera.capt
-    
-    
-    ure(imagestr)
-    return(imagestr)
-
-from subprocess import call
-import time
-a = "hello dear"
-
-def mySpeechMale(text):
-    call(["espeak","-s140 -ven+18 -z",text])
-    return None
-
-def readBook():
-    mySpeechMale(output())
-
-
-
-app = App(title="Hello world")
 
 
 
 #%%
-#image_file="/home/pi/cashma/images/cc.jpeg"
-image_file=captureDocs()
+image_file=capture()
 
 image  = Image.open(image_file)
 
@@ -148,18 +121,20 @@ def text_within(document,x1,y1,x2,y2):
     return text
 
 
-def output():
-    op = text_within(document, 50,0,8331,4000)
-    if len(op)>=1:
+#def output():
+ #   op = text_within(document, 50,0,8331,4000)
+  #  if len(op)>=1:
     
-        return op
+   #     return op
+    #else:
+     #   return "no text found"
+
+
+
+if __name__ == "__main__":
+    textlen =text_within(document, 50,0,8331,4000) 
+    print(textlen)
+    if len(textlen)>=1:
+        pass
     else:
-        return "no text found"
-
-
-welcome_message = Text(app, text="  CASHMA", size=40, font="Times new roman", color="lightblue")
-my_name = TextBox(app, width=30)
-update_text = PushButton(app, command=readBook, text="READ")
-
-
-app.display()
+        print( "no text found")
