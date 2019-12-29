@@ -1,3 +1,4 @@
 picamera
 google-cloud-vision
 Pillow
+pybluez
