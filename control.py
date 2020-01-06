@@ -1,13 +1,8 @@
-from textToSpeech import mySpeechMale
-from gapi2 import output
-from faceDetect import faceOutput
-from objectdetect import objectOutput
 
 
 import subprocess
-#subprocess.Popen(['python3','/home/pi/cashma/BTServer.py'])
-subprocess.Popen(['sudo','hciconfig','hci0','piscan'])
-subprocess.Popen(['sudo','python3','/home/pi/cashma/BTServer.py'])
+#subprocess.Popen(['sudo','rfcomm','watch','hci0'])
+#subprocess.Popen(['sudo','hciconfig','hci0','piscan'])
 
 
 

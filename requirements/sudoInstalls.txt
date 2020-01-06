@@ -8,3 +8,4 @@ sudo apt-get install libbluetooth-dev
 sudo apt-get install bluez
 sudo apt-get install python-bluetooth
 sudo python3 -m pip3 install -r requirements.txt
+sudo apt-get install lsof
