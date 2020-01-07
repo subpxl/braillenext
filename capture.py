@@ -7,18 +7,13 @@ imgpath = "/home/pi/cashma/images/testimages/sample.jpg"
 
 def capture():
     i = 0
-    try:
-        i =i+1
-        camera.capture(imgpath)
-        return imgpath
-    
-    except:
-       return("some issue")
-
-    finally:
-        pass
+    i =i+1
+    camera.capture(imgpath)
+   # camera.close()
 
 
+    return imgpath
+ 
   #  while os.path.exists("/home/pi/cashma/images/testimages/sample%s.jpg" % i):
    #     i += 1
     #    imaged = "/home/pi/cashma/images/testimages/sample{}.jpg".format(i)
