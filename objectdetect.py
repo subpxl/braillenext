@@ -10,7 +10,7 @@ import time
 
 
 
-image = capture()
+image = '/home/pi/cashma/images/testimages/objects/truck.png'
 
 class ObjectDetect():
 

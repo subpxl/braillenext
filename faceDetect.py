@@ -1,20 +1,16 @@
 from google.cloud import vision
 from google.cloud.vision import types
 import io
-
 from PIL import Image, ImageDraw
 from enum import Enum
 import os
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
-from capture import capture
-
-#image = "images/testimages/face.jpg"
-image = capture()
-print(image)
-
+image = '/home/pi/cashma/images/testimages/face/face.jpg'
 annotate_path = "/home/pi/cashma/images/testimages/annotate/annotate.jpg"
 
     
+
 def detect_face(face_file, max_results=100):
     client = vision.ImageAnnotatorClient()
     content = face_file.read()
@@ -23,40 +19,25 @@ def detect_face(face_file, max_results=100):
     return countNo
 
 def highlight_faces(image, faces, output_filename):
-    """Draws a polygon around the faces, then saves to output_filename.
-
-    Args:
-    image: a file containing the image with the faces.
-    faces: a list of faces found in the file. This should be in the format
-        returned by the Vision API.
-    output_filename: the name of the image file to be created, where the
-        faces have polygons drawn around them.
-    """
     im = Image.open(image)
     draw = ImageDraw.Draw(im)
-    # Sepecify the font-family and the font-size
     for face in faces:
         box = [(vertex.x, vertex.y)
             for vertex in face.bounding_poly.vertices]
         draw.line(box + [box[0]], width=5, fill='#00ff00')
-        # Place the confidence value/score of the detected faces above the
-        # detection box in the output image
         draw.text(((face.bounding_poly.vertices)[0].x,
                 (face.bounding_poly.vertices)[0].y - 30),
                 str(format(face.detection_confidence, '.3f')) + '%',
                 fill='#FF0000')
     im.save(output_filename)
 
+
+# this is for face image annotation
 def  face_main(input_filename, output_filename, max_results=10):
     
     with open( input_filename, 'rb') as image:
         
         faces = detect_face(image, max_results)
-#      print('Found {} face{}'.format(
-#         len(faces), '' if len(faces) == 1 else 's'))
-
-#        print('Writing to file {}'.format(output_filename))
-        # Reset the file pointer, so we can read the file again
         image.seek(0)
         highlight_faces(image, faces, output_filename)
 
@@ -65,6 +46,21 @@ def  face_main(input_filename, output_filename, max_results=10):
 
         else:
             return " no face found"
+
+# this is for no data saving
+def  loacalise_face(input_filename, max_results=10):
+    
+    with open( input_filename, 'rb') as image:
+        
+        faces = detect_face(image, max_results)
+        image.seek(0)
+
+        if len(faces) >0:
+            return 'Found {}  faces'.format(len(faces))
+
+        else:
+            return " no face found"
+
 
 
 """def faceOutput():
@@ -75,6 +71,4 @@ def  face_main(input_filename, output_filename, max_results=10):
 
 if __name__ == "__main__":
 
-
-    
-    print(face_main(image,annotate_path))
+    print(loacalise_face(image))

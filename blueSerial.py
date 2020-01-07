@@ -7,7 +7,7 @@ import serial
 ser = serial.Serial('/dev/rfcomm0')
 
 
-hhh='ye chal gyaaa'
+
 hh=hhh.encode()
 ser.write(hh)
 

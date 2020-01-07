@@ -7,14 +7,14 @@ from PIL import Image, ImageDraw
 from enum import Enum
 import os
 import time
-from capture import capture
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
 
 
 
 #%%
-image_file=capture()
+image_file= '/home/pi/cashma/images/testimages/text/text.jpg'
+
 
 image  = Image.open(image_file)
 
