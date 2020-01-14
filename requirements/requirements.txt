@@ -3,3 +3,5 @@ google-cloud-vision
 Pillow
 pybluez
 gpiozero
+pyserial
+pytest
