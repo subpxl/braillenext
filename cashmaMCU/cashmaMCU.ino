@@ -1,39 +1,38 @@
-#define trigPin1 17
-#define echoPin1 18
-#define coin2 19
 
-int i = 0;
+#define coin1 6
+#define coing1 10
 
-int fadeValue1 ;
-int cm1;
+#define trigPin 17
+#define echoPin 18
 
+#define buzzpos 19
+#define buzzneg 7
 
-
-const int numReadings = 10;
+#define numReadings 10
 
 int readings[numReadings];      // the readings from the analog input
 int readIndex = 0;              // the index of the current reading
 int total = 0;                  // the running total
 int average = 0;  
 
-int newav  ;
+int newav;
 
+int i = 0;
+
+int fadeValue;
+int cm;
 
 
 void setup() {
   Serial.begin (9600);
-  
-  pinMode(trigPin1, OUTPUT);
-  pinMode(echoPin1, INPUT);
-  pinMode(coin2, OUTPUT);
-
-      for (int thisReading = 0; thisReading < numReadings; thisReading++) {
-    readings[thisReading] = 0;
+  pinMode(buzzpos, OUTPUT);
+  pinMode(buzzneg, OUTPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(coin1, OUTPUT);
+    pinMode(coing1, OUTPUT);
+     
 }
-}
-
-
-
 
 int av(int b)
 {
@@ -62,33 +61,53 @@ return b;
   }
 
 
-  
-void loop() {
 
-long duration1, distance1;
-digitalWrite(trigPin1, LOW);  // Added this line
-delayMicroseconds(2); // Added this line
-digitalWrite(trigPin1, HIGH);
+void buzz(int k)
+{digitalWrite(buzzpos,HIGH);
+ delay(k);
+ digitalWrite(buzzpos,LOW);
+ delay(k);
+}
+
+void loop() {
+  digitalWrite(coing1,LOW);
+  digitalWrite(buzzneg,LOW);
+
+  long duration, distance;
+  digitalWrite(trigPin, LOW);  // Added this line
+  delayMicroseconds(2); // Added this line
+  digitalWrite(trigPin, HIGH);
 //  delayMicroseconds(1000); - Removed this line
-delayMicroseconds(10); // Added this line
-digitalWrite(trigPin1, LOW);
-duration1 = pulseIn(echoPin1, HIGH);
-distance1 = (duration1/2) / 29.1;
-delay(10);
-newav = av(distance1);
-   
-if (newav >= 250 || newav <= 0){
+  delayMicroseconds(10); // Added this line
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = (duration/2) / 29.1;
+ delay(5);
+
+
+newav = av(distance);
+
+  if (newav >= 250 || newav <= 0){
     Serial.println("Out of range");
   }
-else {
-    cm1 = 250 - newav;  
-    fadeValue1 = map(cm1 , 0, 250, 0, 254);
-    analogWrite(coin2, fadeValue1);  // Writes the fadeValue to pin 9 
+  
+  else 
+  {
+
+
+      cm = 250 - newav;  
+
+  fadeValue = map(cm , 0, 250, 0, 254);
+
+
+  analogWrite(coin1, fadeValue);  // Writes the fadeValue to pin 9 
+    buzz(fadeValue);
     Serial.println(newav);
-    Serial.print("\t");
-    //   Serial.println(fadeValue1);
-    Serial.println(cm1);
+   // Serial.print("\t");
+     //   Serial.println(fadeValue1);
+      //Serial.println(i);
+
   }
-  //delay(4);
- //i++;
+
+ i++;
 }
