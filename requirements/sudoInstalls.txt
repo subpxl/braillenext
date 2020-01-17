@@ -4,6 +4,7 @@ sudo apt-get upgrade
 sudo apt-get install git
 sudo apt-get install python3-pip
 sudo apt-get install libopenjp2-7
+sudo rpi-update
 sudo apt install libtiff5
 sudo apt-get install libbluetooth-dev
 sudo apt-get install bluez
