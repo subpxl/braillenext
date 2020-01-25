@@ -1,74 +1,75 @@
-import picamera
-from time import sleep
-from gpiozero import Button
-import serial
+
 from textDetect import text_within
 from faceDetect import loacalise_face
 from objectdetect import ObjectDetect
 from capture import capture
-#ser = serial.Serial('/dev/rfcomm0')
+import serial
+from gpiozero import Button
+from signal import pause
+import subprocess
 
-camera = picamera.PiCamera()
-imgpath = "/home/pi/cashma/images/testimages/sample.jpg"
 
-def capture():
-    i = 0
-    i =i+1
-    camera.capture(imgpath)
+#subprocess.Popen(['sudo','pkill','rfcomm'])
 
-#camera = PiCamera()
+#subprocess.Popen(['sudo','rfcomm','watch','hci0'])
 
-face_button = Button(14)
-text_button = Button(15)
+
+ser = serial.Serial('/dev/rfcomm0')
+
+face_button = Button(15)
+text_button = Button(19)
 object_button = Button(16)
 location_buton = Button(17)
 emergency_button = Button(18)
 
+inst = ObjectDetect()
 
-text_path = '/home/pi/cashma/images/testimages/text/text.jpg'
-face_path= '/home/pi/cashma/images/testimages/face/face.jpg'
-object_path = '/home/pi/cashma/images/testimages/objects/truck.png'
+str1 = ("processing please wait").encode()
+str2 = ("the content is ").encode()
 
+def face_func():
 
-def take_photo():
-    #camera.start_preview(alpha=190)
-    sleep(1)
-    camera.capture(imgpath)
-    camera.stop_preview()
-
-#button.when_pressed = take_photo
-
-def read_text(document):
-    textlen =text_within(document) 
-    print(textlen)
-    if len(textlen)>=1:
-        pass
-    else:
-        print( "no text found")
-
-def read_object(image):
-    obj = ObjectDetect()
-    result = obj.localize_objects(image)
-    return result
-
-def read_face(image):
-    result = loacalise_face(image)
-    return result
+    # for testing
+    print(str1)
+    ser.write(str1)
+    str3 = loacalise_face(capture()).encode()
+    ser.write(str3)
+  #  ser.write(str2)
+    print("The values are %s AND %s" % (str3, str2))
 
 
-def send_data(hhh):
-    hh=hhh.encode()
-    ser.write(hh)
-    return None
+def obj_func():
+    print(str1)
+    ser.write(str1)
+    str3 = inst.localize_objects(capture()).encode()
+    ser.write(str2)
+    ser.write(str3)
+    print("The values are %s AND %s" % (str3, str2))
+
+def text_func():
+    print(str1)
+    ser.write(str1)
+    str3 = text_within(capture()).encode()
+    print("The values are %s AND %s" % (str3, str2))
+
+    
+    ser.write(str3)
+    ser.write(str2)
+
+def location_func():
+    ser.write(("locationAsk").encode())
 
 
-#subprocess.Popen(['sudo','rfcomm','watch','hci0'])
+def emergency_func():
+    ser.write(("emergencyAsk").encode())
 
-#aa = loacalise_face(face_path)
-##aa = read_text(text_path)
-#inst = ObjectDetect()
-#result= inst.localize_objects(object_path)
+# when the button is pressed
+face_button.when_pressed = face_func
+text_button.when_pressed = text_func
+object_button.when_pressed = obj_func
+location_buton.when_pressed = location_func
+emergency_button.when_pressed = emergency_func
 
-#take_photo()
-if __name__ == "__main__":
-  print(capture())
+pause()
+
+
