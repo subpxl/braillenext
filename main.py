@@ -1,17 +1,25 @@
 
-from textDetect import text_within
-from faceDetect import loacalise_face
-from objectdetect import ObjectDetect
-from capture import capture
+from objectdetect import ObjectDetect, TextDetect
 import serial
 from gpiozero import Button
 from signal import pause
 import subprocess
+import time
+import os
 
 
 #subprocess.Popen(['sudo','pkill','rfcomm'])
-
 #subprocess.Popen(['sudo','rfcomm','watch','hci0'])
+
+
+camera = picamera.PiCamera()
+imgpath = "/home/pi/cashma/images/testimages/sample.jpg"
+
+def capture():
+    i = 0
+    i =i+1
+    camera.capture(imgpath)
+    return imgpath
 
 
 ser = serial.Serial('/dev/rfcomm0')
@@ -24,18 +32,10 @@ emergency_button = Button(18)
 
 inst = ObjectDetect()
 
+textInst = TextDetect()
 str1 = ("processing please wait").encode()
 str2 = ("the content is ").encode()
 
-def face_func():
-
-    # for testing
-    print(str1)
-    ser.write(str1)
-    str3 = loacalise_face(capture()).encode()
-    ser.write(str3)
-  #  ser.write(str2)
-    print("The values are %s AND %s" % (str3, str2))
 
 
 def obj_func():
@@ -49,7 +49,7 @@ def obj_func():
 def text_func():
     print(str1)
     ser.write(str1)
-    str3 = text_within(capture()).encode()
+    str3 = textInst.text_within(capture()).encode()
     print("The values are %s AND %s" % (str3, str2))
 
     
@@ -64,7 +64,6 @@ def emergency_func():
     ser.write(("emergencyAsk").encode())
 
 # when the button is pressed
-face_button.when_pressed = face_func
 text_button.when_pressed = text_func
 object_button.when_pressed = obj_func
 location_buton.when_pressed = location_func
