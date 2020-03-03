@@ -9,7 +9,7 @@ sudo apt install libtiff5
 sudo apt-get install libbluetooth-dev
 sudo apt-get install bluez
 sudo apt-get install python-bluetooth
-sudo python3 -m pip3 install -r ~/cashma/requirements/requirements.txt
+sudo python3 -m pip3 install -r requirements.txt
 sudo apt-get install lsof
 sudo apt install python3-gpiozero
 sudo apt-get install bluez python-bluez
