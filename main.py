@@ -24,11 +24,10 @@ def capture():
 
 ser = serial.Serial('/dev/rfcomm0')
 
-face_button = Button(15)
 text_button = Button(19)
-object_button = Button(16)
-location_buton = Button(17)
-emergency_button = Button(18)
+object_button = Button(13)
+location_buton = Button(6)
+emergency_button = Button(26)
 
 inst = ObjectDetect()
 
