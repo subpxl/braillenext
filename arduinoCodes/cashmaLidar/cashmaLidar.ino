@@ -3,7 +3,7 @@
 #include <VL53L1X.h>
 
 //-----------defines---------
-#define coin  6  // find its pin on pro mini
+#define coin  4  // find its pin on pro mini
 #define numReadings 10
 
 //---------instances and declearations-----------
@@ -57,13 +57,15 @@ int av(int b)
   }
 
   average = total / numReadings; // calculate the average:
-  // return b;   this is optional , needs to be tested
-  return average;
+   return b;   //this is optional , needs to be tested
+  //return average;
 }
 
 //-------void buzz function----------
 void buzz(int k)
-{digitalWrite(coin,HIGH);
+{
+  k = k/15;
+  digitalWrite(coin,HIGH);
  delay(k);
  digitalWrite(coin,LOW);
  delay(k);
@@ -79,16 +81,18 @@ void loop() {
 
   newav = av(distance);
 
-  if (newav >= 350 || newav <= 0){
+  if (newav >= 3500 || newav <= 0){
     Serial.println("Out of range");
   }
   
   else 
   {
-      cm = 351 - newav;  
-  fadeValue = map(cm , 0, 250, 0, 254);
-  analogWrite(coin, fadeValue);  // Writes the fadeValue to pin 9 
-  //  buzz(fadeValue);    //this is for vibrating on and off 
+      cm = 3510 - newav;  
+  //fadeValue = map(cm , 0, 250, 0, 254);
+fadeValue = map(newav , 0, 250, 0, 254);
+
+  //analogWrite(coin, fadeValue);  // Writes the fadeValue to pin 9 
+    buzz(fadeValue);    //this is for vibrating on and off 
   Serial.println(newav);
   }
 }

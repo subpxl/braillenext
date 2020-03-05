@@ -1,6 +1,6 @@
 # BtEchoClient.py
 
-from btcom import *  # TigerJython
+#from btcom import *  # TigerJython
 from btpycom import *  # Standard-Python (PC, Raspi, ...)
 import time
 
