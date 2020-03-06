@@ -3,7 +3,7 @@
 #include <VL53L1X.h>
 
 //-----------defines---------
-#define coin  4  // find its pin on pro mini
+#define coin  6  // find its pin on pro mini
 #define numReadings 10
 
 //---------instances and declearations-----------
@@ -89,10 +89,10 @@ void loop() {
   {
       cm = 3510 - newav;  
   //fadeValue = map(cm , 0, 250, 0, 254);
-fadeValue = map(newav , 0, 250, 0, 254);
+fadeValue = map(cm , 0, 250, 0, 254);
 
-  //analogWrite(coin, fadeValue);  // Writes the fadeValue to pin 9 
+  analogWrite(coin, fadeValue);  // Writes the fadeValue to pin 9 
     buzz(fadeValue);    //this is for vibrating on and off 
   Serial.println(newav);
   }
-}
+}  
