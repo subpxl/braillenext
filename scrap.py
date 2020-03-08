@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+!/usr/bin/env python3
 """PyBluez simple example rfcomm-client.py
 Simple demonstration of a client application that uses RFCOMM sockets intended
 for use with rfcomm-server.
@@ -11,10 +11,22 @@ import sys
 import bluetooth
 
 
+addr = None
+
+if len(sys.argv) < 2:
+    print("No device specified. Searching all nearby bluetooth devices for "
+          "the SampleServer service...")
+else:
+    addr = sys.argv[1]
+    print("Searching for SampleServer on {}...".format(addr))
 
 # search for the SampleServer service
 uuid = "94f39d29-7d6d-437d-973b-fba39e49d4ee"
-service_matches = bluetooth.find_service(uuid=uuid, address="18:01:F1:06:E0:3A")
+service_matches = bluetooth.find_service(uuid=uuid, address=addr)
+
+if len(service_matches) == 0:
+    print("Couldn't find the SampleServer service.")
+    sys.exit(0)
 
 first_match = service_matches[0]
 port = first_match["port"]
