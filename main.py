@@ -6,14 +6,14 @@ from signal import pause
 import subprocess
 import time
 import os
-
+import picamera
 
 #subprocess.Popen(['sudo','pkill','rfcomm'])
 #subprocess.Popen(['sudo','rfcomm','watch','hci0'])
 
 
 camera = picamera.PiCamera()
-imgpath = "/home/pi/cashma/images/testimages/sample.jpg"
+imgpath = "/home/pi/cashma/test/testimages/sample.jpg"
 
 def capture():
     i = 0
