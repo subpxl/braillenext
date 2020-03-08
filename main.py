@@ -32,12 +32,12 @@ emergency_button = Button(13)
 inst = ObjectDetect()
 
 textInst = TextDetect()
-str1 = ("detecting please wait").encode()
 str2 = ("the content is ").encode()
 
 
 
 def obj_func():
+    str1 = ("detecting please wait").encode()
     print(str1)
     ser.write(str1)
     str3 = inst.localize_objects(capture()).encode()
@@ -46,6 +46,7 @@ def obj_func():
     print("The values are %s AND %s" % (str3, str2))
 
 def text_func():
+    str1 = ("reading please wait").encode()
     print(str1)
     ser.write(str1)
     str3 = textInst.text_within(capture()).encode()
@@ -54,6 +55,7 @@ def text_func():
     ser.write(str2)
 
 def location_func():
+
     ser.write(("#locationAsk").encode())
 
 def emergency_func():
