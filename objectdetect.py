@@ -7,7 +7,7 @@ import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
 import time
 
-image = '/home/pi/cashma/images/testimages/objects/truck.png'
+image = '/home/pi/cashma/test/testimages/objects/truck.png'
 
 class ObjectDetect():
 
