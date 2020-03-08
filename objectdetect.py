@@ -8,6 +8,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
 import time
 
 image = '/home/pi/cashma/test/testimages/objects/truck.png'
+textImage ="cashma/test/testimages/text/text.jpg"
 
 class ObjectDetect():
 
@@ -81,6 +82,11 @@ class TextDetect(object):
 if __name__ == "__main__":
 
     inst = ObjectDetect()
+    print("this is a test  for object")
     result= inst.localize_objects(image)
     print(result)
 
+    print("this is a test  for object")
+    inst2 = TextDetect()
+    result2 = inst2.text_within(textImage)
+    print(result2)
