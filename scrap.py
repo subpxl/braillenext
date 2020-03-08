@@ -1,28 +1,37 @@
+#!/usr/bin/env python3
+"""PyBluez simple example rfcomm-client.py
+Simple demonstration of a client application that uses RFCOMM sockets intended
+for use with rfcomm-server.
+Author: Albert Huang <albert@csail.mit.edu>
+$Id: rfcomm-client.py 424 2006-08-24 03:35:54Z albert $
+"""
+
+import sys
+
 import bluetooth
 
-bd_addr = "18:01:F1:06:E0:3A"
 
-port = 1
 
-sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+# search for the SampleServer service
+uuid = "94f39d29-7d6d-437d-973b-fba39e49d4ee"
+service_matches = bluetooth.find_service(uuid=uuid, address="18:01:F1:06:E0:3A")
 
-try:
-        sock.connect((bd_addr, port))
-except :
-    print("port1 failed")
-else:
-        sock.connect((bd_addr, 20))
-finally:
-    print("cant connect")
+first_match = service_matches[0]
+port = first_match["port"]
+name = first_match["name"]
+host = first_match["host"]
 
-sock.send("hello!!")
+print("Connecting to \"{}\" on {}".format(name, host))
+
+# Create the client socket
+sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+sock.connect((host, port))
+
+print("Connected. Type something...")
+while True:
+    data = input()
+    if not data:
+        break
+    sock.send(data)
 
 sock.close()
-
-"""
-    serverInfo = ("18:01:F1:06:E0:3A", 1)   // this is for my phone
-    connect(serverInfo, 20)
-
-This greatly decreases the connection delay.
-
- """
