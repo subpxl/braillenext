@@ -9,7 +9,7 @@ import os
 import picamera
 
 #subprocess.Popen(['sudo','pkill','rfcomm'])
-#subprocess.Popen(['sudo','rfcomm','watch','hci0'])
+subprocess.Popen(['sudo','rfcomm','watch','hci0'])
 
 
 camera = picamera.PiCamera()
