@@ -1,5 +1,4 @@
 
-from objectdetect import ObjectDetect, TextDetect
 import serial
 import time
 import os
