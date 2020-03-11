@@ -5,6 +5,8 @@ led = LED(4)
 
 while True:
     led.on()
+    print("on")
     sleep(1)
     led.off()
+        print("off")
     sleep(1)
