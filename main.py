@@ -17,7 +17,11 @@ from time import sleep
 
 imgpath = "/home/pi/cashma/test/testimages/sample.jpg"
 ser = serial.Serial('/dev/rfcomm0')
+
+welcome = " the machine has started"
+
 str2 = ("the content is ").encode()
+
 
 
 camera = picamera.PiCamera()
@@ -45,7 +49,7 @@ def obj_func():
     ser.write(str1)
     objDetect = inst.localize_objects(capture())
     ser.write(objDetect.encode())
-    print("The values are %s AND %s" % (o, str2))
+    print("The values are %s AND %s" % (objDetect, str2))
 
 def text_func():
     str1 = ("reading please wait").encode()
