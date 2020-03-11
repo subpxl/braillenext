@@ -7,55 +7,56 @@ import subprocess
 import time
 import os
 import picamera
+from gpiozero import LED
+from time import sleep
 
 #subprocess.Popen(['sudo','pkill','rfcomm'])
-subprocess.Popen(['sudo','rfcomm','watch','hci0'])
+#subprocess.Popen(['sudo','rfcomm','watch','hci0'])
+
+
+
+imgpath = "/home/pi/cashma/test/testimages/sample.jpg"
+ser = serial.Serial('/dev/rfcomm0')
+str2 = ("the content is ").encode()
 
 
 camera = picamera.PiCamera()
-imgpath = "/home/pi/cashma/test/testimages/sample.jpg"
-
-def capture():
-    i = 0
-    i =i+1
-    camera.capture(imgpath)
-    return imgpath
-
-
-ser = serial.Serial('/dev/rfcomm0')
-
+led = LED(17)
 text_button = Button(19)
 object_button = Button(26)
 location_buton = Button(6)
 emergency_button = Button(13)
 
 inst = ObjectDetect()
-
 textInst = TextDetect()
-str2 = ("the content is ").encode()
 
+def capture():
+    
+    led.on()
+    camera.capture(imgpath)
+    sleep(0.5)
+    led.off()
+    return imgpath
 
 
 def obj_func():
     str1 = ("detecting please wait").encode()
     print(str1)
     ser.write(str1)
-    str3 = inst.localize_objects(capture()).encode()
-    ser.write(str2)
-    ser.write(str3)
-    print("The values are %s AND %s" % (str3, str2))
+    objDetect = inst.localize_objects(capture())
+    ser.write(objDetect.encode())
+    print("The values are %s AND %s" % (o, str2))
 
 def text_func():
     str1 = ("reading please wait").encode()
     print(str1)
     ser.write(str1)
-    str3 = textInst.text_within(capture()).encode()
+    str3 = textInst.text_within(capture())
     print("The values are %s AND %s" % (str3, str2))
-    ser.write(str3)
+    ser.write(str3.encode())
     ser.write(str2)
 
 def location_func():
-
     ser.write(("#locationAsk").encode())
 
 def emergency_func():
