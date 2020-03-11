@@ -1,13 +1,9 @@
 
 from objectdetect import ObjectDetect, TextDetect
 import serial
-from gpiozero import Button
-from signal import pause
-import subprocess
 import time
 import os
 import picamera
-from gpiozero import LED
 from time import sleep
 
 #subprocess.Popen(['sudo','pkill','rfcomm'])
@@ -22,56 +18,61 @@ welcome = " the machine has started"
 
 str2 = ("the content is ").encode()
 
+from google.cloud import vision
+from google.cloud.vision import types
+import io
+from PIL import Image, ImageDraw
+from enum import Enum
+import os
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
+import time
 
 
-camera = picamera.PiCamera()
-led = LED(17)
-text_button = Button(19)
-object_button = Button(26)
-location_buton = Button(6)
-emergency_button = Button(13)
 
-inst = ObjectDetect()
-textInst = TextDetect()
 
 def capture():
     
-    led.on()
     camera.capture(imgpath)
-    led.off()
     return imgpath
 
-
-def obj_func():
-    str1 = ("detecting please wait").encode()
-    print(str1)
-    ser.write(str1)
-    objDetect = inst.localize_objects(capture())
-    ser.write(objDetect.encode())
-    print("The values are %s AND %s" % (objDetect, str2))
-
-def text_func():
-    str1 = ("reading please wait").encode()
-    print(str1)
-    ser.write(str1)
-    str3 = textInst.text_within(capture())
-    print("The values are %s AND %s" % (str3, str2))
-    ser.write(str3.encode())
-    ser.write(str2)
-
-def location_func():
-    ser.write(("#locationAsk").encode())
-
-def emergency_func():
-    ser.write(("#emergencyAsk").encode())
+image = capture()
 
 
-# when the button is pressed
-text_button.when_pressed = text_func
-object_button.when_pressed = obj_func
-location_buton.when_pressed = location_func
-emergency_button.when_pressed = emergency_func
 
-pause()
+class ObjectDetect():
 
 
+    def localize_objects(self,path):
+#        from google.cloud import vision
+        client = vision.ImageAnnotatorClient()
+
+        with open(path, 'rb') as image_file:
+            content = image_file.read()
+        image = vision.types.Image(content=content)
+
+        objects = client.object_localization(
+        image=image).localized_object_annotations
+
+        #   print('Number of objects found: {}'.format(len(objects)))
+
+
+    #    return 'Number of objects found: {}'.format(len(objects))
+        if len(objects)>0:
+            xx =""
+            yy = "number of object found is {}   ".format(len(objects))
+            zz = "they are "
+            for object_ in objects:
+                xx+= ('\n{} (its accuracy is : {} percent) and '.format(object_.name, (round(object_.score, 2)*100)))
+            
+            return yy+zz+xx
+
+        else:
+            return "no object found"
+
+
+if __name__ == "__main__":
+
+    inst = ObjectDetect()
+    print("this is a test  for object")
+    result= inst.localize_objects(image)
+    print(result)
