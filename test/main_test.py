@@ -13,9 +13,6 @@ from time import sleep
 imgpath = "/home/pi/cashma/test/testimages/sample.jpg"
 ser = serial.Serial('/dev/rfcomm0')
 
-welcome = " the machine has started"
-
-str2 = ("the content is ").encode()
 
 from google.cloud import vision
 from google.cloud.vision import types
@@ -32,6 +29,7 @@ camera = picamera.PiCamera()
 def capture():
     
     camera.capture(imgpath)
+    print("i am called")
     return imgpath
 
 image = capture()
@@ -54,7 +52,7 @@ class ObjectDetect():
 
         #   print('Number of objects found: {}'.format(len(objects)))
 
-
+        print("class data called line 55")
     #    return 'Number of objects found: {}'.format(len(objects))
         if len(objects)>0:
             xx =""
@@ -62,7 +60,7 @@ class ObjectDetect():
             zz = "they are "
             for object_ in objects:
                 xx+= ('\n{} (its accuracy is : {} percent) and '.format(object_.name, (round(object_.score, 2)*100)))
-            
+            print("printing data : line 63")
             return yy+zz+xx
 
         else:
