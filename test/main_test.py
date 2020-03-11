@@ -27,7 +27,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/keys/apikey.json"
 import time
 
 
-
+camera = picamera.PiCamera()
 
 def capture():
     
