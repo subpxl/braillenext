@@ -25,7 +25,7 @@ str2 = ("the content is ").encode()
 
 
 camera = picamera.PiCamera()
-led = LED(17)
+led = LED(4)
 text_button = Button(19)
 object_button = Button(26)
 location_buton = Button(6)
