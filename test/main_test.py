@@ -29,10 +29,9 @@ camera = picamera.PiCamera()
 def capture():
     
     camera.capture(imgpath)
-    print("i am called")
+    print("photo clicked line 32")
     return imgpath
 
-image = capture()
 
 
 
@@ -71,5 +70,5 @@ if __name__ == "__main__":
 
     inst = ObjectDetect()
     print("this is a test  for object")
-    result= inst.localize_objects(image)
+    result= inst.localize_objects(capture())
     print(result)
