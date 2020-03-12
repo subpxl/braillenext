@@ -1,5 +1,12 @@
 #!/bin/bash
+var=$(cat /dev/rfcomm0)
+echo "$var"
 
-if [ cat /dev/rfcomm0 = "runmain" ]; then
-  echo "x has the value 'valid'"
+
+if [[ $var = "add" ]]
+then
+    echo running main.py
+    sudo python3 /home/pi/cashma/main.py
+else
+    echo not good
 fi
