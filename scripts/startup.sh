@@ -1,5 +1,5 @@
 #!/bin/bash
-$listen cat /dev/rfcomm0
+$cat /dev/rfcomm0 >> $listen
 
 if [ "$listen" = "runmain" ]; then
   echo "x has the value 'valid'"
