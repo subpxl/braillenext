@@ -20,6 +20,9 @@ ser = serial.Serial('/dev/rfcomm0')
 
 welcome = " the machine has started"
 
+print(welcome)
+ser.write(welcome)
+
 str2 = ("the content is ").encode()
 
 
@@ -74,5 +77,4 @@ location_buton.when_pressed = location_func
 emergency_button.when_pressed = emergency_func
 
 pause()
-
 
