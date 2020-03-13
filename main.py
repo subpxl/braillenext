@@ -35,7 +35,7 @@ def lightOn():
     print("on")
     sleep(2)
 
-def lightOff()
+def lightOff():
     
     led.off()
     print("off")
