@@ -23,7 +23,6 @@ welcome = (" the machine is connected").encode()
 print(welcome)
 ser.write(welcome)
 
-str2 = ("the content is ").encode()
 
 
 
@@ -52,15 +51,17 @@ def obj_func():
     ser.write(str1)
     objDetect = inst.localize_objects(capture())
     ser.write(objDetect.encode())
-    print("The values are %s AND %s" % (objDetect, str2))
+    print("The values are %s " % (objDetect))
 
 def text_func():
     str1 = ("reading text please wait").encode()
+    str2 = ("the content is ").encode()
     print(str1)
     ser.write(str1)
     str3 = textInst.text_within(capture())
     print("The values are %s AND %s" % (str3, str2))
     ser.write(str2)
+    time.sleep(1)
     ser.write(str3.encode())
     
 
