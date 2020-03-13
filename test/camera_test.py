@@ -1,7 +1,7 @@
 import picamera
 imgpath = "/home/pi/cashma/sample.jpg"
 camera = picamera.PiCamera()
-
+camera.rotation = 90
 def capture():
     camera.start_preview()
     
