@@ -81,7 +81,7 @@ class TextDetect(object):
         
         if len(text) <1:
             return "no text found"
-        else
+        else:
             return text
 
 
