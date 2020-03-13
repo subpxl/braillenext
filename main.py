@@ -39,7 +39,8 @@ emergency_button = Button(13)
 inst = ObjectDetect()
 textInst = TextDetect()
 
-led.on()
+led.on() 
+sleep(1)
 def capture():
     camera.start_preview()
     camera.capture(imgpath)
