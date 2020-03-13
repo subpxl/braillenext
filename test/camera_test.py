@@ -6,6 +6,7 @@ def capture():
     camera.start_preview()
     
     camera.capture(imgpath)
+    print(imgpath)
     return imgpath
 
 
