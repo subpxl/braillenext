@@ -20,28 +20,43 @@ ser = serial.Serial('/dev/rfcomm0')
 welcome = (" the machine is connected").encode()
 
 print(welcome)
+
 ser.write(welcome)
 
 
-
-
-camera = picamera.PiCamera()
 led = LED(17)
+camera = picamera.PiCamera()
 text_button = Button(19)
 object_button = Button(26)
 location_buton = Button(6)
 emergency_button = Button(13)
+
+
+def light():
+    led.on()
+    print("on")
+    sleep(1)
+    led.off()
+    print("off")
+    sleep(1)
+
+light()
+
+
+
 
 inst = ObjectDetect()
 textInst = TextDetect()
 
 def capture():
     camera.start_preview()
-    led.on()
+ #   led.on()
     time.sleep(2)
     camera.capture(imgpath)
-    led.off()
+  #  led.off()
     return imgpath
+
+
 
 
 def obj_func():
