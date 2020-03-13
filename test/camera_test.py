@@ -1,6 +1,6 @@
 import picamera
 imgpath = "/home/pi/cashma/sample.jpg"
-
+camera = picamera.PiCamera()
 
 def capture():
     camera.start_preview()
