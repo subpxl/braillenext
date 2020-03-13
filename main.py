@@ -27,7 +27,7 @@ ser.write(welcome)
 
 
 camera = picamera.PiCamera()
-led = LED(4)
+led = LED(17)
 text_button = Button(19)
 object_button = Button(26)
 location_buton = Button(6)
