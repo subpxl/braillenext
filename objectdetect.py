@@ -35,7 +35,7 @@ class ObjectDetect():
             kk ="""     
                    """
             for object_ in objects:
-                xx+= ('\n{} (its accuracy is : {} percent) and '.format(object_.name, (round(object_.score, 2)*100)))
+                xx+= ('\n{} (its accuracy is : {} percent)  '.format(object_.name, (round(object_.score, 2)*100)))
             
             return yy+kk+zz+xx
 
