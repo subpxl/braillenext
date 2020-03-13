@@ -16,11 +16,9 @@ from time import sleep
 
 imgpath = "/home/pi/cashma/test/testimages/sample.jpg"
 ser = serial.Serial('/dev/rfcomm0')
-
 welcome = (" the machine is connected").encode()
 
 print(welcome)
-
 ser.write(welcome)
 
 
@@ -32,16 +30,20 @@ location_buton = Button(6)
 emergency_button = Button(13)
 
 
-def light():
+def lightOn():
     led.on()
     print("on")
-    sleep(1)
+    sleep(2)
+
+def lightOff()
+    
     led.off()
     print("off")
-    sleep(1)
 
-light()
 
+
+lightOn()
+lightOff()
 
 
 
@@ -50,10 +52,9 @@ textInst = TextDetect()
 
 def capture():
     camera.start_preview()
- #   led.on()
-    time.sleep(2)
+    lightOn()
     camera.capture(imgpath)
-  #  led.off()
+    lightOff()
     return imgpath
 
 
