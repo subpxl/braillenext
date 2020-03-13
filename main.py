@@ -1,13 +1,12 @@
 
 from objectdetect import ObjectDetect, TextDetect
 import serial
-from gpiozero import Button
+from gpiozero import Button, LED
 from signal import pause
 import subprocess
 import time
 import os
 import picamera
-from gpiozero import LED
 from time import sleep
 
 #subprocess.Popen(['sudo','pkill','rfcomm'])
@@ -37,10 +36,11 @@ inst = ObjectDetect()
 textInst = TextDetect()
 
 def capture():
-    
-#    led.on()
+    camera.start_preview()
+    led.on()
+    time.sleep(2)
     camera.capture(imgpath)
- #   led.off()
+    led.off()
     return imgpath
 
 
@@ -48,9 +48,9 @@ def obj_func():
     str1 = ("detecting object please wait").encode()
     print(str1)
     ser.write(str1)
-    led.on()
+ #   led.on()
     objDetect = inst.localize_objects(capture())
-    led.off()
+  #  led.off()
     ser.write(objDetect.encode())
     print("The values are %s " % (objDetect))
 
@@ -59,9 +59,9 @@ def text_func():
     str2 = ("the content is ").encode()
     print(str1)
     ser.write(str1)
-    led.on()
+   # led.on()
     str3 = textInst.text_within(capture())
-    led.off()
+    #led.off()
     print("The values are %s AND %s" % (str3, str2))
     ser.write(str2)
     time.sleep(1)
