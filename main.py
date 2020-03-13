@@ -18,7 +18,7 @@ from time import sleep
 imgpath = "/home/pi/cashma/test/testimages/sample.jpg"
 ser = serial.Serial('/dev/rfcomm0')
 
-welcome = " the machine has started"
+welcome = (" the machine has started").encode()
 
 print(welcome)
 ser.write(welcome)
