@@ -47,7 +47,7 @@ def capture():
 
 
 def obj_func():
-    str1 = ("detecting please wait").encode()
+    str1 = ("detecting object please wait").encode()
     print(str1)
     ser.write(str1)
     objDetect = inst.localize_objects(capture())
@@ -55,7 +55,7 @@ def obj_func():
     print("The values are %s AND %s" % (objDetect, str2))
 
 def text_func():
-    str1 = ("reading please wait").encode()
+    str1 = ("reading text please wait").encode()
     print(str1)
     ser.write(str1)
     str3 = textInst.text_within(capture())
