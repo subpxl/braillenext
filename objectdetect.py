@@ -78,7 +78,11 @@ class TextDetect(object):
                                     text+='\t'
                                 if(symbol.property.detected_break.type==5):
                                     text+='\n'
-        return text
+        
+        if len(text) <1:
+            return "no text found"
+        else
+            return text
 
 
 if __name__ == "__main__":
