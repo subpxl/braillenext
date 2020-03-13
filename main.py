@@ -38,10 +38,9 @@ textInst = TextDetect()
 
 def capture():
     
-    led.on()
+#    led.on()
     camera.capture(imgpath)
-    sleep(0.5)
-    led.off()
+ #   led.off()
     return imgpath
 
 
@@ -49,7 +48,9 @@ def obj_func():
     str1 = ("detecting object please wait").encode()
     print(str1)
     ser.write(str1)
+    led.on()
     objDetect = inst.localize_objects(capture())
+    led.off()
     ser.write(objDetect.encode())
     print("The values are %s " % (objDetect))
 
@@ -58,7 +59,9 @@ def text_func():
     str2 = ("the content is ").encode()
     print(str1)
     ser.write(str1)
+    led.on()
     str3 = textInst.text_within(capture())
+    led.off()
     print("The values are %s AND %s" % (str3, str2))
     ser.write(str2)
     time.sleep(1)
