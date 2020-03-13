@@ -32,10 +32,12 @@ class ObjectDetect():
             xx =""
             yy = "number of object found is {}   ".format(len(objects))
             zz = "they are "
+            kk ="""     
+                   """
             for object_ in objects:
                 xx+= ('\n{} (its accuracy is : {} percent) and '.format(object_.name, (round(object_.score, 2)*100)))
             
-            return yy+zz+xx
+            return yy+kk+zz+xx
 
         else:
             return "no object found"
