@@ -60,8 +60,9 @@ def text_func():
     ser.write(str1)
     str3 = textInst.text_within(capture())
     print("The values are %s AND %s" % (str3, str2))
-    ser.write(str3.encode())
     ser.write(str2)
+    ser.write(str3.encode())
+    
 
 def location_func():
     ser.write(("#locationAsk").encode())
