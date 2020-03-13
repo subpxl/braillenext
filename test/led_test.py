@@ -3,13 +3,13 @@ from time import sleep
 
 led = LED(17)
 
-#while True:
-led.on()
-print("on")
-sleep(1)
-led.off()
-print("off")
-sleep(1)
+while True:
+    led.on()
+    print("on")
+    sleep(1)
+    led.off()
+    print("off")
+    sleep(1)
 
 
 
