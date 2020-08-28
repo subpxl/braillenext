@@ -1,18 +1,13 @@
 
 from objectdetect import ObjectDetect, TextDetect
 import serial
-from gpiozero import Button, LED
+from gpiozero import Button
 from signal import pause
-import subprocess
-import time
-import os
 import picamera
 from time import sleep
 
 #subprocess.Popen(['sudo','pkill','rfcomm'])
 #subprocess.Popen(['sudo','rfcomm','watch','hci0'])
-
-
 
 imgpath = "/home/pi/cashma/sample.jpg"
 ser = serial.Serial('/dev/rfcomm0')
@@ -21,42 +16,25 @@ welcome = (" the machine is connected").encode()
 print(welcome)
 ser.write(welcome)
 
-
-led = LED(17)
 camera = picamera.PiCamera()
 text_button = Button(19)
 object_button = Button(26)
 location_buton = Button(6)
 emergency_button = Button(13)
 
-
-
-
-
-
-
-
 inst = ObjectDetect()
 textInst = TextDetect()
 
-led.on() 
-sleep(1)
 def capture():
     camera.start_preview()
     camera.capture(imgpath)
     return imgpath
 
-
-
-
-def obj_func():
-    
+def obj_func():    
     str1 = ("detecting object please wait").encode()
     print(str1)
     ser.write(str1)
- #   led.on()
     objDetect = inst.localize_objects(capture())
-  #  led.off()
     ser.write(objDetect.encode())
     print("The values are %s " % (objDetect))
 
@@ -65,12 +43,9 @@ def text_func():
     str2 = ("the content is ").encode()
     print(str1)
     ser.write(str1)
-   # led.on()
     str3 = textInst.text_within(capture())
-    #led.off()
     print("The values are %s AND %s" % (str3, str2))
     ser.write(str2)
-    time.sleep(1)
     ser.write(str3.encode())
     
 

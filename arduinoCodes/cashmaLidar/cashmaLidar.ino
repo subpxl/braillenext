@@ -90,9 +90,10 @@ void loop() {
       cm = 3510 - newav;  
   //fadeValue = map(cm , 0, 250, 0, 254);
 fadeValue = map(newav , 0, 3500, 254, 0);
-
+Serial.print(cm);
+Serial.print("\t");
   analogWrite(coin, fadeValue);  // Writes the fadeValue to pin 9 
-//    buzz(fadeValue);    //this is for vibrating on and off 
+    //buzz(fadeValue);    //this is for vibrating on and off 
   Serial.println(fadeValue);
   }
 }  

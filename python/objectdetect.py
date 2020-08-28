@@ -12,9 +12,7 @@ textImage ="cashma/test/testimages/text/text.jpg"
 
 class ObjectDetect():
 
-
     def localize_objects(self,path):
-#        from google.cloud import vision
         client = vision.ImageAnnotatorClient()
 
         with open(path, 'rb') as image_file:
@@ -23,20 +21,14 @@ class ObjectDetect():
 
         objects = client.object_localization(
         image=image).localized_object_annotations
-
-        #   print('Number of objects found: {}'.format(len(objects)))
-
-
-    #    return 'Number of objects found: {}'.format(len(objects))
-        if len(objects)>0:
+    if len(objects)>0:
             xx =""
             yy = "number of object found is {}   ".format(len(objects))
             zz = "they are "
             kk ="""     
                    """
             for object_ in objects:
-                xx+= ('\n{} (its accuracy is : {} percent)  '.format(object_.name, (round(object_.score, 2)*100)))
-            
+                xx+= ('\n{} (its accuracy is : {} percent)  '.format(object_.name, (round(object_.score, 2)*100)))            
             return yy+kk+zz+xx
 
         else:
@@ -87,12 +79,12 @@ class TextDetect(object):
 
 if __name__ == "__main__":
 
-    inst = ObjectDetect()
+    inst = O  bjectDetect()
     print("this is a test  for object")
     result= inst.localize_objects(image)
     print(result)
 
-    print("this is a test  for object")
+    print("this is a test  for text")
     inst2 = TextDetect()
     result2 = inst2.text_within(textImage)
     print(result2)
