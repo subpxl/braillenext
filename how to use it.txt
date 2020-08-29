@@ -1,0 +1,22 @@
+connect with bluetooth
+
+sudo bluetoothctl
+agent on 
+default-agent
+scan on
+pair ip
+connect ip
+
+
+Send serial from the RPi command line
+
+echo "Hello" > /dev/rfcomm0
+
+to read from serial 
+cat /dev/rfcomm0
+
+
+to read a text file use
+echo  "$(<speech_test.txt)"  > /dev/rfcomm0   
+
+pair with phone 
