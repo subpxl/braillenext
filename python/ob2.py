@@ -75,7 +75,7 @@ class TextDetect(object):
 
 if __name__ == "__main__":
 
-    inst = O  bjectDetect()
+    inst = ObjectDetect()
     print("this is a test  for object")
     result= inst.localize_objects(image)
     print(result)
