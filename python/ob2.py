@@ -30,8 +30,8 @@ class ObjectDetect():
                 xx+= ('\n{} (its accuracy is : {} percent)  '.format(object_.name, (round(object_.score, 2)*100)))            
                 return yy+kk+zz+xx
 
-        else:
-            return "no object found"
+        # else:
+        #     return "no object found"
 
 
 class TextDetect(object):
