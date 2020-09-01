@@ -1,3 +1,4 @@
+git@github.com:shubham314/cashma.git
 connect with bluetooth
 
 sudo bluetoothctl
