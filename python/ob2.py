@@ -18,26 +18,23 @@ class ObjectDetect():
         with open(path, 'rb') as image_file:
             content = image_file.read()
         image = vision.types.Image(content=content)
-
         objects = client.object_localization(
         image=image).localized_object_annotations
-    if len(objects)>0:
+
+        if len(objects)>0:
             xx =""
             yy = "number of object found is {}   ".format(len(objects))
             zz = "they are "
-            kk ="""     
-                   """
+            kk =""""""
             for object_ in objects:
                 xx+= ('\n{} (its accuracy is : {} percent)  '.format(object_.name, (round(object_.score, 2)*100)))            
-            return yy+kk+zz+xx
+                return yy+kk+zz+xx
 
         else:
             return "no object found"
 
 
 class TextDetect(object):
-
-
     def text_within(self, path): 
         text=""
         x1 =50
@@ -47,7 +44,6 @@ class TextDetect(object):
         client = vision.ImageAnnotatorClient()
         with io.open(path, 'rb') as image_file2:
             content = image_file2.read()
-
         content_image = types.Image(content=content)
         response = client.document_text_detection(image=content_image)
         document = response.full_text_annotation
@@ -83,7 +79,6 @@ if __name__ == "__main__":
     print("this is a test  for object")
     result= inst.localize_objects(image)
     print(result)
-
     print("this is a test  for text")
     inst2 = TextDetect()
     result2 = inst2.text_within(textImage)
