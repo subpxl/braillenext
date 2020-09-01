@@ -21,17 +21,17 @@ class ObjectDetect():
 
         objects = client.object_localization(
         image=image).localized_object_annotations
-        if len(objects)>0:
-                xx =""
-                yy = "number of object found is {}   ".format(len(objects))
-                zz = "they are "
-                kk ="""     
-                    """
-                for object_ in objects:
-                    xx+= ('\n{} (its accuracy is : {} percent)  '.format(object_.name, (round(object_.score, 2)*100)))            
-                return yy+kk+zz+xx
+    if len(objects)>0:
+            xx =""
+            yy = "number of object found is {}   ".format(len(objects))
+            zz = "they are "
+            kk ="""     
+                   """
+            for object_ in objects:
+                xx+= ('\n{} (its accuracy is : {} percent)  '.format(object_.name, (round(object_.score, 2)*100)))            
+            return yy+kk+zz+xx
 
-        else :
+        else:
             return "no object found"
 
 
@@ -79,7 +79,7 @@ class TextDetect(object):
 
 if __name__ == "__main__":
 
-    inst = ObjectDetect()
+    inst = O  bjectDetect()
     print("this is a test  for object")
     result= inst.localize_objects(image)
     print(result)
