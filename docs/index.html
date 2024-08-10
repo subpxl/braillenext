@@ -3,11 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Braillenext</title>
+    <title>BrailleNext - Empowering Vision</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand': '#0066cc',
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body>
-        <h1>braille next website </h1>
-    <!-- todo -->
-    complete a minimum website for reference and details about device
+<body class="bg-white text-gray-800 font-sans" x-data="{ navOpen: false }">
+    <header class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-brand">BrailleNext</a>
+            <button @click="navOpen = !navOpen" class="md:hidden text-brand">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+            <ul class="hidden md:flex space-x-6" :class="{'hidden': !navOpen, 'block': navOpen, 'absolute': navOpen, 'top-full': navOpen, 'left-0': navOpen, 'right-0': navOpen, 'bg-white': navOpen, 'p-4': navOpen, 'shadow-md': navOpen}">
+                <li><a href="#home" class="hover:text-brand transition duration-300">Home</a></li>
+                <li><a href="#about" class="hover:text-brand transition duration-300">About</a></li>
+                <li><a href="#features" class="hover:text-brand transition duration-300">Features</a></li>
+                <li><a href="#how-it-works" class="hover:text-brand transition duration-300">How It Works</a></li>
+                <li><a href="#contact" class="hover:text-brand transition duration-300">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="py-20 bg-gradient-to-b from-blue-50 to-white">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl font-bold mb-4 text-brand">BrailleNext: Vision Reimagined</h1>
+                <p class="text-xl mb-8 text-gray-600">Experience the world through our groundbreaking visual assistance technology</p>
+                <a href="#about" class="bg-brand text-white px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Discover More</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-16">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-brand">About BrailleNext</h2>
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <img src="placeholder-image.jpg" alt="BrailleNext Device" class="rounded-lg shadow-lg transform hover:scale-105 transition duration-500 float-animation">
+                    </div>
+                    <div class="md:w-1/2 md:pl-8">
+                        <p class="text-lg mb-4 text-gray-700">BrailleNext is a revolutionary device designed to assist people with visual disabilities. Our smart glasses, coupled with an Android app, provide real-time visual information through audio feedback.</p>
+                        <p class="text-lg mb-4 text-gray-700">With BrailleNext, users can capture photos of their surroundings and receive detailed descriptions, read text, and navigate their environment with confidence.</p>
+                        <p class="text-lg font-bold text-brand">Best of all, BrailleNext is free for personal use!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="bg-gray-100 py-16">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-brand">Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300" x-data="{hover:false}" @mouseenter="hover = true" @mouseleave="hover = false">
+                        <h3 class="text-2xl font-bold mb-4 text-brand">Image Description</h3>
+                        <p :class="{'text-gray-800': hover, 'text-gray-600': !hover}" class="transition duration-300">Capture photos and receive detailed audio descriptions of the scene.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300" x-data="{hover:false}" @mouseenter="hover = true" @mouseleave="hover = false">
+                        <h3 class="text-2xl font-bold mb-4 text-brand">Text Recognition</h3>
+                        <p :class="{'text-gray-800': hover, 'text-gray-600': !hover}" class="transition duration-300">Convert printed or digital text into speech for easy comprehension.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300" x-data="{hover:false}" @mouseenter="hover = true" @mouseleave="hover = false">
+                        <h3 class="text-2xl font-bold mb-4 text-brand">Navigation Assistance</h3>
+                        <p :class="{'text-gray-800': hover, 'text-gray-600': !hover}" class="transition duration-300">Receive guidance and information about your surroundings as you move.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="py-16">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-brand">How It Works</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <ol class="list-decimal list-inside text-lg space-y-4 text-gray-700">
+                            <li class="transform hover:translate-x-2 transition duration-300">Put on the BrailleNext smart glasses</li>
+                            <li class="transform hover:translate-x-2 transition duration-300">Open the BrailleNext app on your Android device</li>
+                            <li class="transform hover:translate-x-2 transition duration-300">Connect the app to your smart glasses</li>
+                            <li class="transform hover:translate-x-2 transition duration-300">Use voice commands or the app interface to capture photos</li>
+                            <li class="transform hover:translate-x-2 transition duration-300">Listen to the detailed audio description of the captured image or text</li>
+                        </ol>
+                    </div>
+                    <div class="md:w-1/2 md:pl-8">
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-lg transform hover:scale-105 transition duration-500"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-gradient-to-b from-white to-blue-50 py-16">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8 text-brand">Get in Touch</h2>
+                <p class="text-xl mb-8 text-gray-600">Have questions or want to learn more about BrailleNext? We're here to help!</p>
+                <a href="mailto:info@braillenext.com" class="bg-brand text-white px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition duration-300 transform hover:scale-105 inline-block">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 text-gray-600 py-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 BrailleNext. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
