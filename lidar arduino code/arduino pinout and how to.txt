@@ -1,0 +1,16 @@
+
+vibrating coin = pin 6
+vlx lidar = A4, A5
+buzzer = 5
+
+----------------------
+
+how to use it :=
+
+start 
+
+	1 connect arduino nano 
+	2 connect all components as told in pinout
+	3 upload this code 
+
+done

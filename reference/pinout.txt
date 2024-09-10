@@ -1,3 +1,0 @@
-vibrating coin = pin 6
-vlx lidar = A4, A5
-buzzer = 5

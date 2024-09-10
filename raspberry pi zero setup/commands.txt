@@ -1,0 +1,162 @@
+
+
+echo>H:\ssh  #make ssh folder
+
+#ssh key for git 
+ssh-keygen -t rsa -b 4096 -C "your0email@gmail.com"
+eval "$(ssh-agent)"  OR    eval $(ssh-agent)
+ssh-add -k id_rsa
+#github ssh key add and use
+
+sudo apt-get update && upgrade
+sudo apt-get install python3-pip
+sudo shutdown -r now
+
+ssh pi@raspberrypi.local 
+
+#camera test
+raspistill -o cam.jpg
+
+#
+git@github.com:subpxl/braillenext.git
+
+git reset #hashsudo
+git push origin dev -f
+
+# firmware revision
+sudo rpi-update
+
+# bluetooth related commands
+sudo apt-get install bluez python-bluez
+
+sudo systemctl bluetooth start
+sudo apt-get install blueman
+service bluetooth status
+
+
+# bluetooth repair
+sudo nano /etc/systemd/system/dbus-org.bluez.service
+ExecStart=/usr/lib/bluetooth/bluetoothd --compat
+after saving
+
+
+#bluetooth issue solution
+cd /etc/systemd/system/bluetooth.target.wants
+sudo nano bluetooth.service
+sudo sdptool add SP
+sudo hcitool dev
+sudo hciconfig hci0 piscan
+
+
+#bluetooth setup
+sudo nano /etc/systemd/system/dbus-org.bluez.service
+ExecStart=/usr/lib/bluetooth/bluetoothd -C
+ExecStartPost=/usr/bin/sdptool add SP
+
+#blurtooth setup bluetoothctl
+sudo bluetoothctl
+agent-on
+default-agent
+discoverable-on
+pairable-on
+scan-on
+pair mac
+trust [mac]
+connect [mac]
+
+
+sudo systemctl daemon-reload
+sudo systemctl restart bluetooth
+sudo chmod 777 /var/run/sdp
+
+
+#make bash file
+chmod +x <scriptname.sh>
+#!/bin/sh
+#run it
+./scriptname.sh
+
+#lsusb
+
+#subprocess to run bluetooth and also solution of gpio issue
+import subprocess
+subprocess.Popen(['sudo','hciconfig','hci0','piscan'])
+subprocess.Popen(['sudo','python3','/home/pi/cashma/BTServer.py'])
+
+
+#bluetooth python without sudo
+sudo apt-get install libcap2-bin
+sudo setcap 'cap_net_raw,cap_net_admin+eip' `which hcitool`
+sudo setcap 'cap_net_raw,cap_net_admin+eip' `which hciconfig`
+
+python3 -m serial.tools.list_ports
+sudo rfcomm watch hci0
+sudo /etc/init.d/bluetooth stop
+sudo /etc/init.d/bluetooth start
+sudo /etc/init.d/bluetooth restart
+sudo apt-get install lsof
+
+sudo ps -ax | grep /dev/rfcomm0
+sudo lsof | grep /dev/rfcomm0
+sudo kill -9 processid
+
+
+
+
+sudo nano /etc/bluetooth/rfcomm.conf
+rfcomm0 {
+     #Automatically bind the device at startup
+     bind yes;
+
+     # Bluetooth address of the device
+     device 18:01:F1:06:E0:3A;
+
+     # RFCOMM channel for the connection
+     channel 1;
+
+     # Description of the connection
+     comment "mi phone";
+}
+
+
+sudo pkill rfcomm
+
+mkdir -p ~/scripts
+nano ~/scripts/autopair
+chmod +x ~/scripts/autopair
+chmod +x ~/python/on.py
+
+nano ~/.bashrc
+
+#kernel messages
+dmesg
+
+
+
+/home/pi/cashma/test/testimages/sample.jpg
+
+
+
+# best tutorial on raspi = http://www.penguintutor.com/raspberrypi/
+
+run process at startup
+sudo nano crontab -e 
+
+#rfcomm read
+cat /dev/rfcomm0
+/home/pi/cashma
+
+
+
+for
+
+virtualenvironment
+sudo apt-get install python3-venv
+pip install virtualenv
+mkdir python-virtual-environments && cd python-virtual-environments
+python3 -m venv env
+source env/bin/activate
+deactivate
+
+
+covert python2to3

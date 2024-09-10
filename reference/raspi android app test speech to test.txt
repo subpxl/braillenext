@@ -1,4 +1,10 @@
-git@github.com:shubham314/cashma.git
+https://github.com/subpxl/braillenext
+
+test for raspberry pi bluetooth sending data to android app
+
+
+-----------------------
+
 connect with bluetooth
 
 sudo bluetoothctl
@@ -21,3 +27,5 @@ to read a text file use
 echo  "$(<speech_test.txt)"  > /dev/rfcomm0   
 
 pair with phone 
+
+

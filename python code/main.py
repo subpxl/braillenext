@@ -1,4 +1,3 @@
-
 from objectdetect import ObjectDetect, TextDetect
 import serial
 from gpiozero import Button
